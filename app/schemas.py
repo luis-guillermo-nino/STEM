@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from .models import UserRole
+from typing import Optional
 
 
 class UserCreate(BaseModel):
@@ -17,3 +18,20 @@ class UserOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class UserLogin(BaseModel):
+    correo: EmailStr
+    password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class ChatRequest(BaseModel):
+    texto: str
+    modo: str
+    rol: str
+    sesion_id: Optional[int] = None
